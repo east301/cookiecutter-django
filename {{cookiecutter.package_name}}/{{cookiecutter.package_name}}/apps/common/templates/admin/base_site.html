@@ -1,0 +1,20 @@
+{% raw %}{% extends 'admin/base_site.html' %}
+
+{% load compress %}
+
+{% block extrastyle %}
+  {% compress css inline %}
+    <style>
+      body:before {
+        display: block;
+        line-height: 35px;
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white;
+        content: "{{ django_settings.ENVIRONMENT_NAME }}";
+        background-color: {{ django_settings.ENVIRONMENT_COLOR }};
+      }
+    </style>
+  {% endcompress %}
+{% endblock %}{% endraw %}

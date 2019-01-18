@@ -1,0 +1,30 @@
+#
+#
+#
+
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+PyMySQL = "==0.9.3"
+django = "==2.1.5"
+django-bootstrap4 = "==0.0.7"
+django-choices = "==1.6.1"
+django-compressor = "==2.2"
+django-hamlpy = "==1.2"
+gunicorn = "==19.9.0"
+jsonfield2 = "==3.0.2"
+whitenoise = "==4.1.2"
+
+[dev-packages]
+flake8 = "==3.6.0"
+django-livereload-server = "==0.3.2"
+pytest = "==4.1.1"
+pytest-cov = "==2.6.1"
+pytest-django = "==3.4.5"
+pytest-selenium = "==1.15.1"
+
+[requires]
+python_version = "3.7"

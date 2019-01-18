@@ -1,0 +1,64 @@
+- load i18n static
+- load compress
+
+!!! 5
+%html
+  %head
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+    - compress css
+      - block common_css
+        %link{ rel: 'stylesheet', href: '{% raw %}{% static "bootadmin/css/bootstrap.min.css" %}{% endraw %}' }
+        %link{ rel: 'stylesheet', href: '{% raw %}{% static "bootadmin/css/bootadmin.min.css" %}{% endraw %}' }
+        %link{ rel: 'stylesheet', href: '{% raw %}{% static "bootadmin/css/fontawesome-all.min.css" %}{% endraw %}' }
+        :css
+          .card { margin-bottom: 1rem; }
+    - block css
+    %title
+      - block title
+        {{cookiecutter.package_name}}
+
+  %body.bg-light
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark
+      %a.sidebar-toggle.mr-3{ href: '#' }
+        %i.fas.fa-bars
+      %a.navbar-brand{ href: '#' }
+        {{cookiecutter.package_name}}
+      .navbar-collapse.collapse
+        %ul.navbar-nav.ml-auto
+          - if request.user.is_authenticated
+            %li.nav-item.dropdown
+              %a.nav-link.dropdown-toggle{ href: '#', 'data-toggle': 'dropdown' }
+              .dropdown-menu.dropdown-menu-right
+                %a.dropdown-item{ href: '#' }
+                  %i.fas.fa-sign-out-alt
+                  - trans 'Logout'
+          - else
+            %li.nav-item
+              %a.nav-link{ href: '#' }
+                %i.fas.fa-sign-in-alt
+                - trans 'Login'
+
+    .d-flex
+      .sidebar.sidebar-dark.bg-dark
+        %ul.list-unstyled
+          - block sidebar
+            TODO: overwrite sidebar block
+
+      .content.p-4
+        - block notification
+          - if notifications.count > 0
+            .col-sm-12
+              - for notification in notifications.all
+                .alert{ class: 'alert-{% raw %}{{ notification.level }}{% endraw %}'}
+                  = notification.message|safe
+
+        - block content
+          TODO: overwrite content block
+
+    - compress js
+      - block common_js
+        %script{ src: '{% raw %}{% static "bootadmin/js/jquery.min.js" %}{% endraw %}' }
+        %script{ src: '{% raw %}{% static "bootadmin/js/bootstrap.bundle.min.js" %}{% endraw %}' }
+        %script{ src: '{% raw %}{% static "bootadmin/js/bootadmin.min.js" %}{% endraw %}' }
+    - block js

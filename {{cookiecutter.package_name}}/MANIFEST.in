@@ -1,0 +1,10 @@
+#
+#
+#
+
+include Pipfile
+include Pipfile.lock
+
+recursive-include {{cookiecutter.package_name}}/apps/*/locales *
+recursive-include {{cookiecutter.package_name}}/apps/*/static *
+recursive-include {{cookiecutter.package_name}}/apps/*/templates *
